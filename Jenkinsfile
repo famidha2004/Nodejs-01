@@ -6,6 +6,7 @@ pipeline {
         CONTAINER_NAME = 'newsapp'
         DOCKERHUB_USERNAME = 'dockerharikrishnan'
         KUBE_FILE = 'service.yaml'
+        SERVICE_NAME = 'bbcnews'
     }
 
     stages {
@@ -113,7 +114,10 @@ pipeline {
                 label 'kuber'
             }
             steps {
-                sh 'kubectl get pods -o wide'
+                sh '''kubectl get pods -o wide
+                kubectl get svc
+                kubectl get deployments
+                kubectl describe svc ${SERVICE_NAME}'''
             }
         }
     }
@@ -130,5 +134,5 @@ post {
                  subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                  body: "Build failed: ${env.BUILD_URL}"
         }
-    }
+    } 
 }
