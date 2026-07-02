@@ -1,1 +1,30 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: apple-ip 
+  labels:
+    app: apple-pod
+spec: 
+  containers:
+  - name: applecontainer
+    image: harikrishnan-knr/bbcsite
+    ports:
+    - name: apple-ip 
+      containerPort: 80
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apple-ip 
+  labels:
+    app: apple-pod
+spec: 
+  containers:
+  - name: appleservice
+    image: famidha/bbcsite
+    ports:
+    - name: apple-ip 
+      containerPort: 80
+    Service type: Load balancer
