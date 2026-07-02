@@ -103,7 +103,8 @@ pipeline {
                 label 'kuber'
             }
             steps {
-                sh 'kubectl apply -f ${KUBE_FILE}'
+                sh '''kubectl delete -f ${KUBE_FILE} || true
+                kubectl apply -f ${KUBE_FILE}'''
             }
         }
 
