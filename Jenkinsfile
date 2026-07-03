@@ -2,8 +2,8 @@ pipeline {
     agent none
 
     environment {
-        IMAGE_NAME = 'bbcsite'
-        CONTAINER_NAME = 'bbc'
+        IMAGE_NAME = 'bbcnews'
+        CONTAINER_NAME = 'bbcsite'
         DOCKERHUB_USERNAME = 'dockerharikrishnan'
         KUBE_FILE = 'service.yaml'
         SERVICE_NAME = 'bbcnews'
