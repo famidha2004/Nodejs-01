@@ -8,7 +8,7 @@ metadata:
 spec: 
   containers:
   - name: applecontainer
-    image: harikrishnan-knr/bbcnews
+    image: dockerharikrishnan/bbcnews
     ports:
     - name: apple-ip 
       containerPort: 80
@@ -23,7 +23,7 @@ metadata:
 spec: 
   containers:
   - name: appleservice
-    image: famidha/bbcsite
+    image: dockerharikrishnan/bbcnews
     ports:
     - name: apple-ip 
       containerPort: 80
