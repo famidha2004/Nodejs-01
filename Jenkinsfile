@@ -78,7 +78,15 @@ pipeline {
             }
         }
 
-
+        stage('Kubernetes Version Check') {
+            agent {
+                label 'kuber'
+            }
+            steps {
+                sh 'kubectl version'
+                sh 'eksctl version'
+            }
+        }
 
         stage('Verify Kubernetes Files') {
             agent {
