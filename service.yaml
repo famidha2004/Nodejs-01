@@ -8,7 +8,7 @@ metadata:
 spec: 
   containers:
   - name: applecontainer
-    image: harikrishnan-knr/bbcsite
+    image: harikrishnan-knr/bbcnews
     ports:
     - name: apple-ip 
       containerPort: 80
