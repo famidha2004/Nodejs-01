@@ -84,7 +84,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    kubectl version --client
+                    kubectl version
                     eksctl version
                 '''
             }
