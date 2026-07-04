@@ -71,7 +71,7 @@ pipeline {
 
         stage('Checkout for Kubernetes') {
             agent {
-                label 'kuber'
+                label 'kube'
             }
             steps {
                 git branch: 'main', url: 'https://github.com/harikrishnan-knr/Nodejs-01.git'
@@ -80,7 +80,7 @@ pipeline {
 
         stage('Kubernetes Version Check') {
             agent {
-                label 'kuber'
+                label 'kube'
             }
             steps {
                 sh 'kubectl version --client'
@@ -90,7 +90,7 @@ pipeline {
 
         stage('Verify Kubernetes Files') {
             agent {
-                label 'kuber'
+                label 'kube'
             }
             steps {
                 sh 'ls -la'
@@ -99,7 +99,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             agent {
-                label 'kuber'
+                label 'kube'
             }
             steps {
                 sh '''kubectl delete -f ${KUBE_FILE} || true
@@ -109,7 +109,7 @@ pipeline {
 
         stage('Check Pods') {
             agent {
-                label 'kuber'
+                label 'kube'
             }
             steps {
                 sh '''kubectl get pods -o wide
