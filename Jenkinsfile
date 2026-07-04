@@ -83,7 +83,7 @@ pipeline {
                 label 'kuber'
             }
             steps {
-                sh 'kubectl version'
+                sh 'kubectl version --client'
                 sh 'eksctl version'
             }
         }
