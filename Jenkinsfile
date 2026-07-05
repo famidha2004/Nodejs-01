@@ -6,7 +6,7 @@ pipeline {
         CONTAINER_NAME = 'bbcsite'
         DOCKERHUB_USERNAME = 'dockerharikrishnan'
         KUBE_FILE = 'service.yaml'
-        SERVICE_NAME = 'bbcnews'
+        SERVICE_NAME = 'bbcnews-ns'
     }
 
     stages {
@@ -102,8 +102,7 @@ pipeline {
                 label 'kube'
             }
             steps {
-                sh '''kubectl delete -f ${KUBE_FILE} || true
-                kubectl apply -f ${KUBE_FILE}'''
+                sh 'kubectl apply -f ${KUBE_FILE}'
             }
         }
 
@@ -115,7 +114,7 @@ pipeline {
                 sh '''kubectl get pods -o wide
                 kubectl get svc
                 kubectl get deployments
-                kubectl describe svc ${SERVICE_NAME}'''
+                kubectl describe namespaces ${SERVICE_NAME}'''
             }
         }
     }
