@@ -16,7 +16,7 @@ pipeline {
                 label 'docker'
             }
             steps {
-                git branch: 'main', url: 'https://github.com/harikrishnan-knr/Nodejs-01.git'
+                git branch: 'main', url: 'https://github.com/famidha2004/Nodejs-01.git'
             }
         }
 
@@ -74,7 +74,7 @@ pipeline {
                 label 'kube'
             }
             steps {
-                git branch: 'main', url: 'https://github.com/harikrishnan-knr/Nodejs-01.git'
+                git branch: 'main', url: 'https://github.com/famidha2004/Nodejs-01.git'
             }
         }
 
@@ -116,19 +116,6 @@ pipeline {
                 kubectl get deployments
                 kubectl describe namespaces ${SERVICE_NAME}'''
             }
-        }
-    }
-    post {
-        success {
-            mail to: 'harikrishnanknr07@gmail.com',
-                 subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                 body: "Build succeeded: ${env.BUILD_URL}"
-        }
-
-        failure {
-            mail to: 'harikrishnanknr07@gmail.com',
-                 subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                 body: "Build failed: ${env.BUILD_URL}"
         }
     }
 }
