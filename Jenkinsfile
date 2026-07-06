@@ -13,7 +13,7 @@ pipeline {
 
         stage('Checkout') {
             agent {
-                label 'docker'
+                label 'dock'
             }
             steps {
                 git branch: 'main', url: 'https://github.com/famidha2004/Nodejs-01.git'
@@ -22,7 +22,7 @@ pipeline {
 
         stage('Build Docker Image') {
             agent {
-                label 'docker'
+                label 'dock'
             }
             steps {
                 sh 'docker build -t ${IMAGE_NAME}:latest .'
@@ -31,7 +31,7 @@ pipeline {
 
         stage('Stop Old Container') {
             agent {
-                label 'docker'
+                label 'dock'
             }
             steps {
                 sh 'docker stop ${CONTAINER_NAME} || true'
@@ -41,7 +41,7 @@ pipeline {
 
         stage('Run Docker Container') {
             agent {
-                label 'docker'
+                label 'dock'
             }
             steps {
                 sh 'docker run -d --name ${CONTAINER_NAME} -p 80:80 ${IMAGE_NAME}:latest'
@@ -51,7 +51,7 @@ pipeline {
 
         stage('Push Docker Image') {
             agent {
-                label 'docker'
+                label 'dock'
             }
             steps {
                 withCredentials([usernamePassword(
@@ -71,7 +71,7 @@ pipeline {
 
         stage('Checkout for Kubernetes') {
             agent {
-                label 'kube'
+                label 'kuber'
             }
             steps {
                 git branch: 'main', url: 'https://github.com/famidha2004/Nodejs-01.git'
@@ -80,7 +80,7 @@ pipeline {
 
         stage('Kubernetes Version Check') {
             agent {
-                label 'kube'
+                label 'kuber'
             }
             steps {
                 sh 'kubectl version --client'
@@ -90,7 +90,7 @@ pipeline {
 
         stage('Verify Kubernetes Files') {
             agent {
-                label 'kube'
+                label 'kuber'
             }
             steps {
                 sh 'ls -la'
@@ -99,7 +99,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             agent {
-                label 'kube'
+                label 'kuber'
             }
             steps {
                 sh 'kubectl apply -f ${KUBE_FILE}'
@@ -108,7 +108,7 @@ pipeline {
 
         stage('Check Pods') {
             agent {
-                label 'kube'
+                label 'kuber'
             }
             steps {
                 sh '''kubectl get pods -o wide
