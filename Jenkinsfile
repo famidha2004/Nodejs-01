@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = 'bbcnews'
         CONTAINER_NAME = 'bbcsite'
-        DOCKERHUB_USERNAME = 'dockerharikrishnan'
+        DOCKERHUB_USERNAME = 'famidha'
         KUBE_FILE = 'service.yaml'
         SERVICE_NAME = 'bbcnews-ns'
     }
